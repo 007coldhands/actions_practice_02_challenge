@@ -1,0 +1,41 @@
+name: dependency
+
+on: push
+
+jobs:
+    job1:
+        name: Ubuntu
+        runs-on: ubuntu-latest
+        steps:
+            - name: Step one
+              uses: action:checkout@v2
+            - name: Step two
+              run: date
+    
+    job2:
+        name: Windows
+        runs-on: windows-latest
+        steps:
+            - name: Step one
+              uses: action:checkout@v2
+            - name: Step two
+              run: Get-Date
+    
+    job3:
+        name: MacOS
+        runs-on: macos-latest
+        steps:
+            - name: Step one
+              uses: action:checkout@v2
+            - name: Step two
+              run: date
+              
+    job4:
+        name: Dependant job
+        needs: [job1, job2, job3]
+        runs-on: ubuntu-latest
+        steps:
+            - name: Step one
+              uses: action:checkout@v2
+            - name: Step two
+              run: date
